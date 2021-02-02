@@ -19,7 +19,6 @@
 
 			if ($action)
 			{
-				// информация об аккаунте
 				$sql_acc = 'SELECT acc_id FROM usadba_session WHERE session_id = :sess_id';
 				$stmt_acc = $db->prepare($sql_acc);
 				$stmt_acc->execute([':sess_id' => $_COOKIE['SESSID']]);
@@ -32,7 +31,6 @@
 
 				if ($order)
 				{
-					// обновляем текущую позицию
 					$add_cart_sql = 'UPDATE usadba_cart SET count = :new_count
 									 WHERE acc_id = :acc_id AND action_id = :action_id';
 					$add_cart_params = [ 
@@ -83,7 +81,7 @@
 			$cur_money = $stmt->fetch(PDO::FETCH_OBJ);
 			$amount = $cur_money->amount;
 			
-			$admin_id = '01a3a7c0-a951-4267-97e5-7237c621ac32';		//00091e55-bdc5-40ea-a358-ecb6eb1bdc1a	
+			$admin_id = '01a3a7c0-a951-4267-97e5-7237c621ac32';
 			
 			$sql = 'SELECT * FROM usadba_cart INNER JOIN usadba_action using (action_id) WHERE session_id = :sess_id';
         	$stmt = $db->prepare($sql);

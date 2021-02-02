@@ -6,7 +6,6 @@
 		header("location: login.php");
 	}
 
-	/* ПРОВЕРКА НА АДМИНА [НАЧАЛО] */
 	$sql = 'SELECT * FROM usadba_users 
 			INNER JOIN usadba_accounts ON usadba_accounts.acc_id = usadba_users.u_id 
 			INNER JOIN usadba_session ON usadba_session.acc_id = usadba_accounts.acc_id 
@@ -20,10 +19,7 @@
 	if ($user->u_role != 'admin')
  	{
  		header("location: lk.php");
- 	}
- 	/* ПРОВЕРКА НА АДМИНА [КОНЕЦ] */
-	
-	
+ 	}	
 
 	if (isset($_GET['action']) && $_GET['action']=="drop")
 	{ 	

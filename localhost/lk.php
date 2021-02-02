@@ -11,7 +11,7 @@
 								INNER JOIN usadba_session ON usadba_session.acc_id = usadba_accounts.acc_id 
 								INNER JOIN usadba_availability ON usadba_availability.acc_id = usadba_accounts.acc_id
 								WHERE usadba_session.session_id = :sess_id';
-						$stmt = $db->prepare($sql); //user_id
+						$stmt = $db->prepare($sql);
  						$stmt->execute([':sess_id' => $_COOKIE['SESSID']]);
  						$user = $stmt->fetch(PDO::FETCH_OBJ);
 ?>
@@ -74,6 +74,7 @@
  						{
  							echo "<br><br>Меню:
  							  <br><a href='orders.php '> <B><u>Заказы</u></B></a>
+							  <br><a href='userlist.php '> <B><u>Список пользователей</u></B></a>
  							";
  						
  						}		
@@ -82,7 +83,7 @@
 				<p> Пополнить счет: </p>
 				<p> Ваша карта: <?php echo decrypt($user->card_number); ?></p>
 				<form method="post" action="lk.php?page=lk">
-					<p> Введите сумму <input type="text" name="sum" size="10"></p>
+					<p> Введите сумму <input type="text" name="sum" class="hey"></p>
 					<p><button type="submit" name="pay_card">Пополнить</button></p>
 				</form>					
 			</div>

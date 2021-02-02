@@ -17,9 +17,7 @@
  			$params = [':login' => $login];
  			$stmt = $db->prepare($sql);
  			$stmt->execute($params);
-
- 			$user = $stmt->fetch(PDO::FETCH_OBJ);
-								
+ 			$user = $stmt->fetch(PDO::FETCH_OBJ);		
  			if ($user) 
  			{
  				if (password_verify($password, $user->acc_password))
@@ -35,6 +33,10 @@
  		}
  	else
  		echo "Неверно задан логин или пароль!"; 
+	}
+	if (isset($_POST['reg'])) 
+	{
+		header('Location: reg.php');
 	}
 ?>
 
@@ -83,7 +85,8 @@
 		<form action="" method="post">
  			Логин: <input type="text" name="login" />
  			Пароль: <input type="password" name="password" />
- 			<input type="submit" value="Войти" name="log_in" />
+ 			<input class="button-green" type="submit" value="Войти" name="log_in" />
+			<input class="button-red" type="submit" value="Регистрация" name="reg" />
 		</form>
 	</div>
     <div class="footer">
